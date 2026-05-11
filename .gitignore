@@ -1,0 +1,21 @@
+node_modules/
+.env
+.env.local
+dist/
+build/
+*.log
+.DS_Store
+
+# Base de datos: dumps, datos locales y archivos embebidos (no subir al repo)
+dump/
+dumps/
+backup/
+backups/
+mongo-data/
+mongodb-data/
+postgres-data/
+*.dump
+*.sql
+*.db
+*.sqlite
+*.sqlite3
