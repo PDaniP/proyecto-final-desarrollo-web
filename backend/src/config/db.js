@@ -1,16 +1,23 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-export async function connectDB() {
-  const uri = process.env.MONGODB_URI;
-  if (!uri) {
-    console.error("Falta MONGODB_URI en .env");
-    process.exit(1);
-  }
+const conectarDB = async () => {
   try {
-    await mongoose.connect(uri);
-    console.log("Conectado a MongoDB");
-  } catch (e) {
-    console.error("Error conectando a MongoDB:", e.message);
+    console.log("Intentando conectar a MongoDB Atlas...");
+    console.log("URI cargada:", Boolean(process.env.MONGODB_URI));
+
+    await mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 10000
+    });
+
+    console.log("MongoDB conectado correctamente");
+  } catch (error) {
+    console.error("Error al conectar MongoDB:");
+    console.error("Nombre:", error.name);
+    console.error("Mensaje:", error.message);
+    console.error("Código:", error.code);
+
     process.exit(1);
   }
-}
+};
+
+module.exports = conectarDB;

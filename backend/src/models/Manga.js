@@ -1,22 +1,39 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose")
 
-// esquema simple para una entrada de la coleccion
 const mangaSchema = new mongoose.Schema(
   {
-    titulo: { type: String, required: true, trim: true },
-    autor: { type: String, default: "", trim: true },
-    editorial: { type: String, default: "", trim: true },
-    tomosTengo: { type: Number, default: 0, min: 0 },
-    tomosTotal: { type: Number, default: 0, min: 0 },
-    estado: {
+    titulo: {
       type: String,
-      enum: ["quiero_leer", "leyendo", "completado", "pausado", "dropeado"],
-      default: "leyendo",
+      required: true,
+      trim: true
     },
-    notas: { type: String, default: "" },
-    portadaUrl: { type: String, default: "" },
+    autor: {
+      type: String,
+      default: "Desconocido"
+    },
+    estadoLectura: {
+      type: String,
+      enum: ["Leyendo", "Completado", "Pendiente", "Abandonado"],
+      default: "Pendiente"
+    },
+    capitulosLeidos: {
+      type: Number,
+      default: 0
+    },
+    totalCapitulos: {
+      type: Number,
+      default: 0
+    },
+    imagen: {
+      type: String
+    },
+    anilistID: {
+      type: Number
+    }
   },
-  { timestamps: true }
-);
+  {
+    timestamps: true
+  }
+)
 
-export const Manga = mongoose.model("Manga", mangaSchema);
+module.exports = mongoose.model("Manga", mangaSchema)

@@ -1,29 +1,25 @@
-import "dotenv/config";
-import express from "express";
-import cors from "cors";
-import { connectDB } from "./config/db.js";
-import mangaRoutes from "./routes/mangas.js";
+const path = require("path");
 
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-// middlewares basicos
-app.use(cors());
-app.use(express.json());
-
-app.get("/api/health", (_req, res) => {
-  res.json({ ok: true, message: "API manga tracker" });
+require("dotenv").config({
+  path: path.resolve(__dirname, "../.env")
 });
 
-app.use("/api/mangas", mangaRoutes);
+const app = require("./app");
+const conectarDB = require("./config/db");
 
-app.use((err, _req, res, _next) => {
-  console.error(err);
-  res.status(500).json({ error: "Algo salio mal en el servidor" });
-});
+const PORT = process.env.PORT || 3000;
 
-await connectDB();
+const iniciarServidor = async () => {
+  try {
+    await conectarDB();
 
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
+    app.listen(PORT, () => {
+      console.log(`Servidor corriendo en puerto ${PORT}`);
+    });
+  } catch (error) {
+    console.error("No se pudo iniciar el servidor:", error.message);
+    process.exit(1);
+  }
+};
+
+iniciarServidor();

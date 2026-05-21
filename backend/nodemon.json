@@ -1,0 +1,15 @@
+{
+    "watch": [
+        "src"
+    ],
+    "ext": "js,json",
+    "ignore": [
+        "node_modules",
+        ".env",
+        ".env.example",
+        "../frontend",
+        "logs",
+        "*.log"
+    ],
+    "exec": "node src/index.js"
+}
