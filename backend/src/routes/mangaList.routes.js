@@ -9,4 +9,4 @@ router.post('/:userId/add', addMangaToList);
 router.post('/:userId/remove', removeMangaFromList);
 router.post('/:userId/clear', clearMangaList);
 
-module.exports = router
+export default router

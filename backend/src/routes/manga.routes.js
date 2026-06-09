@@ -1,5 +1,5 @@
 import express from 'express';
-import { addManga,getMangas, getMangaByID} from '../controllers/mangaController.js';
+import { addManga,getMangas, getMangaById } from '../controllers/manga.controller.js';
 
 
 const router = express.Router()
@@ -10,4 +10,4 @@ router.get("/:mangaId", getMangaById);
 
 
 
-module.exports = router
+export default router

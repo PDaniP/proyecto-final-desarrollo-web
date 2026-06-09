@@ -36,4 +36,4 @@ export const getMangaById = async (req, res) => {
     }
 };
 
-module.exports = { addManga, getMangas, getMangaById };
+export default { addManga, getMangas, getMangaById };

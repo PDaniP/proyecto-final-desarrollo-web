@@ -1,11 +1,18 @@
-const path = require("path");
+import path from 'path'
+import dotenv from 'dotenv'
+import app from './app.js'
+import conectarDB from './config/db.js'
 
-require("dotenv").config({
-  path: path.resolve(__dirname, "../.env")
-});
+import { fileURLToPath } from 'url';
 
-const app = require("./app");
-const conectarDB = require("./config/db");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({
+  path: path.resolve(__dirname,'../.env')
+})
+
+
 
 const PORT = process.env.PORT || 3000;
 

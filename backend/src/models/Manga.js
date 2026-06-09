@@ -36,4 +36,4 @@ const mangaSchema = new mongoose.Schema(
   }
 )
 
-module.exports = mongoose.model("Manga", mangaSchema)
+export default mongoose.model("Manga", mangaSchema)

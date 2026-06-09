@@ -1,4 +1,4 @@
-import MangaList from '../models/MangaList.js';
+import MangaList from '../models/User.model.js'
 
 // Obtener la lista de mangas de un usuario
 export const getMangaList = async (req, res) => {
