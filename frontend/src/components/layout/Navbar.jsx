@@ -1,47 +1,100 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import styles from "./Navbar.module.css";
 
-function Navbar() {
+function Navbar({ user }) {
+  const [open, setOpen] = useState(false);
+  const [category, setCategory] = useState("Todo");
+  const [search, setSearch] = useState("");
+
+  const wrapperRef = useRef(null);
+
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      console.log({ search, category });
+    }
+  };
+
   return (
-    <nav style={styles.nav}>
-      <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h2 style={styles.logo}>Inicio</h2>
-      </Link>
-
-      <div style={styles.buttons}>
-        <Link to="/login" style={styles.button}>
-          Login
-        </Link>
-
-        <Link to="/registro" style={styles.button}>
-          Registro
-        </Link>
+    <header className="navbar">
+      <div className="navbar__left">
+        <h1 className="navbar__logo">Animanga</h1>
       </div>
-    </nav>
+
+      <div className="navbar__center">
+        <div className={styles.search}>
+          <select
+            className={styles.category}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option>Todo</option>
+            <option>Anime</option>
+            <option>Manga</option>
+            <option>Characters</option>
+          </select>
+
+          <input
+            type="text"
+            placeholder="Buscar..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className={styles.input}
+            onKeyDown={handleSearch}
+          />
+
+          <button
+            type="button"
+            className={styles.searchButton}
+            onClick={() => console.log({ search, category })}
+            aria-label="Buscar"
+          >
+            🔍
+          </button>
+        </div>
+      </div>
+
+      <div className="navbar__right">
+        {!user ? (
+          <div className="flex gap-sm">
+            <button className="btn btn-ghost">Login</button>
+            <button className="btn btn-primary">Registro</button>
+          </div>
+        ) : (
+          <div className={styles.userWrapper} ref={wrapperRef}>
+            <button
+              className={styles.userMenu}
+              onClick={handleToggle}
+              aria-expanded={open}
+            >
+              <span>{user.name}</span>
+            </button>
+
+            {open && (
+              <div className={styles.dropdown}>
+                <button>Perfil</button>
+                <button>Cerrar sesion</button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </header>
   );
 }
-
-const styles = {
-  nav: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "10px 20px",
-    backgroundColor: "#222",
-  },
-  logo: {
-    color: "#fff",
-  },
-  buttons: {
-    display: "flex",
-    gap: "10px",
-  },
-  button: {
-    padding: "8px 16px",
-    backgroundColor: "#4CAF50",
-    color: "#fff",
-    textDecoration: "none",
-    borderRadius: "5px",
-  },
-};
 
 export default Navbar;
