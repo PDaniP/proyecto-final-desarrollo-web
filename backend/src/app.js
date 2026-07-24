@@ -4,15 +4,17 @@ import usersRoutes from './routes/users.routes.js';
 import mangaListRoutes from './routes/mangaList.routes.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import animeRoutes from './routes/anime.routes.js';
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(cookieParser())
+app.use(cookieParser());
 app.use("/users", usersRoutes);
 app.use("/manga-list", mangaListRoutes);
 app.use("/mangas", mangasRoutes);
+app.use("/anime", animeRoutes);
 
 
 
