@@ -5,7 +5,7 @@ import mangaListRoutes from './routes/mangaList.routes.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import animeRoutes from './routes/anime.routes.js';
-
+import animeListRoutes from './routes/animeList.routes.js';
 const app = express();
 
 app.use(express.json());
@@ -15,6 +15,7 @@ app.use("/users", usersRoutes);
 app.use("/manga-list", mangaListRoutes);
 app.use("/mangas", mangasRoutes);
 app.use("/anime", animeRoutes);
+app.use("/anime-list", animeListRoutes);
 
 
 

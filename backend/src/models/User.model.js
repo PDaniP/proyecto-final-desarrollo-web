@@ -18,12 +18,64 @@ const userSchema = new mongoose.Schema(
         type: String,
         required: true
     },
-    mangaList: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Manga'
-        }
-    ]
+    mangaList: {
+        mangaCompletado: [{
+            mangaid: {
+                type: Number,
+                required: true
+            },
+            mangaTitle: {
+                type: String,
+                required: true
+            },
+            mangaCoverImage: {
+                type: String,
+                required: true
+            }
+        }],
+        mangaEnProgreso: [{
+            mangaid: {
+                type: Number,
+                required: true
+            },
+            mangaTitle: {
+                type: String,
+                required: true
+            },
+            mangaCoverImage: {
+                type: String,
+                required: true
+            }
+        }],
+        mangaPlanToRead: [{
+            mangaid: {
+                type: Number,
+                required: true
+            },
+            mangaTitle: {
+                type: String,
+                required: true
+            },
+            mangaCoverImage: {
+                type: String,
+                required: true
+            }
+        }],
+        mangaDropped: [{
+            mangaid: {
+                type: Number,
+                required: true
+            },
+            mangaTitle: {
+                type: String,
+                required: true
+            },
+            mangaCoverImage: {
+                type: String,
+                required: true
+            }
+        }]
+    }
   },
     {
         timestamps: true
