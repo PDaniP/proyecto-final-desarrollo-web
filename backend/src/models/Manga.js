@@ -1,31 +1,34 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose"
 
 const mangaSchema = new mongoose.Schema(
   {
-    titulo: {
+    title: {
       type: String,
       required: true,
       trim: true
     },
-    autor: {
+    author: {
       type: String,
-      default: "Desconocido"
+      default: "Unknown"
     },
-    estadoLectura: {
-      type: String,
-      enum: ["Leyendo", "Completado", "Pendiente", "Abandonado"],
-      default: "Pendiente"
-    },
-    capitulosLeidos: {
-      type: Number,
-      default: 0
-    },
-    totalCapitulos: {
-      type: Number,
-      default: 0
-    },
-    imagen: {
+    description: {
       type: String
+    },
+    coverImage: {
+      type: String
+    },
+    status: {
+      type: String,
+      enum: ["Reading", "Completed", "Planned", "Dropped"],
+      default: "Planned"
+    },
+    chaptersRead: {
+      type: Number,
+      default: 0
+    },
+    totalChapters: {
+      type: Number,
+      default: 0
     },
     anilistID: {
       type: Number
@@ -36,4 +39,4 @@ const mangaSchema = new mongoose.Schema(
   }
 )
 
-module.exports = mongoose.model("Manga", mangaSchema)
+export default mongoose.model("Manga", mangaSchema)

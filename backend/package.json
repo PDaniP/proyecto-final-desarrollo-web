@@ -2,16 +2,28 @@
   "name": "backend",
   "private": true,
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "dev": "nodemon",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "test": "mocha --exit \"test/**/*.spec.js\""
   },
   "dependencies": {
+    "axios": "^1.18.1",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.6.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3",
+    "chai": "^4.3.7",
+    "mongodb-memory-server": "^8.11.1",
+    "sinon": "^15.0.0"
   }
 }
