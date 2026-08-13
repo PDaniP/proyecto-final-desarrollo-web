@@ -79,6 +79,12 @@
     transform: translateY(-1px);
 }
 
+.authActions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
 .userWrapper {
     position: relative;
 }

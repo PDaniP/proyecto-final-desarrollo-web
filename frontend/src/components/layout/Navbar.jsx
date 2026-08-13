@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./Navbar.module.css";
+import { Link } from "react-router-dom";
 
-function Navbar({ user }) {
+function Navbar({ user, onOpenLogin, onOpenRegister }) {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState("Todo");
   const [search, setSearch] = useState("");
@@ -32,7 +33,9 @@ function Navbar({ user }) {
   return (
     <header className="navbar">
       <div className="navbar__left">
-        <h1 className="navbar__logo">Animanga</h1>
+        <Link to="/" className="navbar__logoLink" aria-label="Ir al inicio">
+          <h1 className="navbar__logo">Animanga</h1>
+        </Link>
       </div>
 
       <div className="navbar__center">
@@ -70,9 +73,22 @@ function Navbar({ user }) {
 
       <div className="navbar__right">
         {!user ? (
-          <div className="flex gap-sm">
-            <button className="btn btn-ghost">Login</button>
-            <button className="btn btn-primary">Registro</button>
+          <div className={`${styles.authActions} gap-sm`}>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={onOpenLogin}
+            >
+              Login
+            </button>
+
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={onOpenRegister}
+            >
+              Registro
+            </button>
           </div>
         ) : (
           <div className={styles.userWrapper} ref={wrapperRef}>
@@ -86,8 +102,12 @@ function Navbar({ user }) {
 
             {open && (
               <div className={styles.dropdown}>
-                <button>Perfil</button>
-                <button>Cerrar sesion</button>
+                <Link to="/profile" className="btn btn-ghost">
+                  Perfil
+                </Link>
+                <Link to="/logout" className="btn btn-ghost">
+                  Cerrar sesión
+                </Link>
               </div>
             )}
           </div>

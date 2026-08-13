@@ -90,11 +90,34 @@ button{
     cursor: pointer;
 }
 
+a.btn,
+button.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
 .btn {
   border: none;
   padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-sm);
   transition: all 0.2s ease;
+}
+
+.btn-ghost {
+    margin: 0.1rem 0.15rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--color-text-muted);
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-text);
+    border-color: rgba(255, 255, 255, 0.14);
 }
 
 .btn-primary{
@@ -188,6 +211,18 @@ button{
     flex: 1;
     justify-content: left;
     margin-left: var(--space-lg);
+}
+
+.navbar__logoLink {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.navbar__logoLink:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
 }
 
 .navbar__logo {

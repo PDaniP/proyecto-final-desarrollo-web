@@ -1,6 +1,7 @@
 import { useState } from "react";
+import styles from "./RegisterForm.module.css";
 
-function RegisterForm() {
+function RegisterForm({ compact = false }) {
   const [form, setForm] = useState({
     nombre: "",
     email: "",
@@ -22,7 +23,6 @@ function RegisterForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validaciones básicas
     if (!form.nombre || !form.email || !form.password || !form.confirmPassword) {
       setError("Todos los campos son obligatorios");
       return;
@@ -39,17 +39,15 @@ function RegisterForm() {
     }
 
     setError("");
-
-    // 👉 Acá después conectás con tu backend
     console.log("Datos de registro:", form);
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <h2>Registro</h2>
+    <div className={compact ? styles.compactPage : styles.page}>
+      <form onSubmit={handleSubmit} className={compact ? styles.compactForm : styles.form}>
+        <h2 className={styles.title}>Registro</h2>
 
-        {error && <p style={styles.error}>{error}</p>}
+        {error && <p className={styles.error}>{error}</p>}
 
         <input
           type="text"
@@ -57,7 +55,7 @@ function RegisterForm() {
           placeholder="Nombre"
           value={form.nombre}
           onChange={handleChange}
-          style={styles.input}
+          className={styles.input}
         />
 
         <input
@@ -66,7 +64,7 @@ function RegisterForm() {
           placeholder="Correo electrónico"
           value={form.email}
           onChange={handleChange}
-          style={styles.input}
+          className={styles.input}
         />
 
         <input
@@ -75,7 +73,7 @@ function RegisterForm() {
           placeholder="Contraseña"
           value={form.password}
           onChange={handleChange}
-          style={styles.input}
+          className={styles.input}
         />
 
         <input
@@ -84,48 +82,15 @@ function RegisterForm() {
           placeholder="Confirmar contraseña"
           value={form.confirmPassword}
           onChange={handleChange}
-          style={styles.input}
+          className={styles.input}
         />
 
-        <button type="submit" style={styles.button}>
+        <button type="submit" className={styles.button}>
           Registrarse
         </button>
       </form>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "50px",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    width: "300px",
-    gap: "10px",
-    padding: "20px",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-  },
-  input: {
-    padding: "10px",
-    fontSize: "14px",
-  },
-  button: {
-    padding: "10px",
-    backgroundColor: "#2196F3",
-    color: "#fff",
-    border: "none",
-    cursor: "pointer",
-    borderRadius: "5px",
-  },
-  error: {
-    color: "red",
-    fontSize: "14px",
-  },
-};
 
 export default RegisterForm;

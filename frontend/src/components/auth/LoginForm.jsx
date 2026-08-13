@@ -1,6 +1,7 @@
 import { useState } from "react";
+import styles from "./LoginForm.module.css";
 
-function LoginForm() {
+function LoginForm({ compact = false }) {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -20,24 +21,21 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validación simple
     if (!form.email || !form.password) {
       setError("Todos los campos son obligatorios");
       return;
     }
 
     setError("");
-
-    // 👉 Acá después vas a conectar con tu backend
     console.log("Datos de login:", form);
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <h2>Iniciar sesión</h2>
+    <div className={compact ? styles.compactPage : styles.page}>
+      <form onSubmit={handleSubmit} className={compact ? styles.compactForm : styles.form}>
+        <h2 className={styles.title}>Iniciar sesión</h2>
 
-        {error && <p style={styles.error}>{error}</p>}
+        {error && <p className={styles.error}>{error}</p>}
 
         <input
           type="email"
@@ -45,7 +43,7 @@ function LoginForm() {
           placeholder="Correo electrónico"
           value={form.email}
           onChange={handleChange}
-          style={styles.input}
+          className={styles.input}
         />
 
         <input
@@ -54,48 +52,15 @@ function LoginForm() {
           placeholder="Contraseña"
           value={form.password}
           onChange={handleChange}
-          style={styles.input}
+          className={styles.input}
         />
 
-        <button type="submit" style={styles.button}>
+        <button type="submit" className={styles.button}>
           Login
         </button>
       </form>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "50px",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    width: "300px",
-    gap: "10px",
-    padding: "20px",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-  },
-  input: {
-    padding: "10px",
-    fontSize: "14px",
-  },
-  button: {
-    padding: "10px",
-    backgroundColor: "#4CAF50",
-    color: "#fff",
-    border: "none",
-    cursor: "pointer",
-    borderRadius: "5px",
-  },
-  error: {
-    color: "red",
-    fontSize: "14px",
-  },
-};
 
 export default LoginForm;
