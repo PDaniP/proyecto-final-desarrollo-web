@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./LoginForm.module.css";
 
-function LoginForm({ compact = false }) {
+function LoginForm({ compact = false, onSuccess }) {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -28,6 +28,7 @@ function LoginForm({ compact = false }) {
 
     setError("");
     console.log("Datos de login:", form);
+    if (onSuccess) onSuccess();
   };
 
   return (

@@ -2,6 +2,15 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
+function SearchIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="11" cy="11" r="5.5" />
+      <path d="M16 16l5 5" />
+    </svg>
+  );
+}
+
 function Navbar({ user, onOpenLogin, onOpenRegister }) {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState("Todo");
@@ -66,7 +75,7 @@ function Navbar({ user, onOpenLogin, onOpenRegister }) {
             onClick={() => console.log({ search, category })}
             aria-label="Buscar"
           >
-            🔍
+            <SearchIcon />
           </button>
         </div>
       </div>

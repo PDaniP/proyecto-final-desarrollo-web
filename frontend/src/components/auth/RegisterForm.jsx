@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./RegisterForm.module.css";
 
-function RegisterForm({ compact = false }) {
+function RegisterForm({ compact = false, onSuccess }) {
   const [form, setForm] = useState({
     nombre: "",
     email: "",
@@ -40,6 +40,7 @@ function RegisterForm({ compact = false }) {
 
     setError("");
     console.log("Datos de registro:", form);
+    if (onSuccess) onSuccess();
   };
 
   return (
