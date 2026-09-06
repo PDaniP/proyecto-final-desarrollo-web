@@ -81,9 +81,14 @@ try {
 
     const response = await axios.post(BASE_URL, {
         query,
-        variables
+        variables,
+    },
+        {
+            headers: {
+            'Content-Type': 'application/json',
+        }
     });
-    console.log(response.data);
+    
     return response.data;
 }
 catch(error){
