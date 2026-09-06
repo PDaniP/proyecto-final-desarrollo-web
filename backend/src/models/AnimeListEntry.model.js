@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
-const userListSchema = new mongoose.Schema({
+const animeListSchema = new mongoose.Schema({
     userId: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        unique: true
     },
     animeCompletado: [{
         animeid: {
@@ -63,4 +65,4 @@ const userListSchema = new mongoose.Schema({
     }],
 
 });     
-export const UserList = mongoose.model('UserList', userListSchema);
+export const AnimeList = mongoose.model('AnimeList', animeListSchema);
