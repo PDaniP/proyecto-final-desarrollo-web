@@ -104,7 +104,7 @@
     display: flex;
     align-items: center;
     gap: var(--space-xs);
-
+    color: var(--color-text);
     background: var(--color-surface-2);
     padding: var(--space-xs) var(--space-sm);
     border-radius: var(--radius-md);

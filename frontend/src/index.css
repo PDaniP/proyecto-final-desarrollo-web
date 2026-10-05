@@ -78,7 +78,7 @@ body {
 }
 
 .main {
-    padding: var(--space-lg);
+    padding: 16px 20px 20px 8px;
     width: 100%;
 }
 
@@ -126,24 +126,28 @@ button.btn {
 .btn-ghost {
     margin: 0.1rem 0.15rem;
     background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--color-text-muted);
+    color: var(--color-text);
+    border: 1.5px solid rgba(3, 43, 92, 0.9);
+
 }
 
 .btn-ghost:hover {
     background: rgba(255, 255, 255, 0.08);
     color: var(--color-text);
-    border-color: rgba(255, 255, 255, 0.14);
+    border: 1.5px solid rgba(3, 43, 92, 0.9);
+
 }
 
 .btn-primary{
-    background: var(--color-primary);
+    background: var(--color-surface-2);
     color: white;
     box-shadow: var(--shadow-glow);
+    border: 1.5px solid rgba(3, 43, 92, 0.9);
+
 }
 
 .btn-primary:hover{
-    background: var(--color-primary-glow);
+    background: var(--shadow-glow);
 }
 
 .container{
