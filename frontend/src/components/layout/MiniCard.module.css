@@ -1,0 +1,21 @@
+.minicard_slide {
+    min-height: 180px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+}
+
+.minicard_contenido {
+    color: white;
+}
+
+.minicard_nombre {
+    margin: 0 0 8px;
+}
+
+.minicard_valoracion {
+    margin: 0;
+}
