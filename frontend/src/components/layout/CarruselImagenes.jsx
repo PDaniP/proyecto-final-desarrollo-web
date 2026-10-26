@@ -5,6 +5,7 @@ import axios from "axios";
 function CarruselImagenes() {
   const [animes, setAnimes] = useState([]);
   const [indiceActual, setIndiceActual] = useState(0);
+  const [animeConBanner, setAnimeConBanner] = useState([]);
 
   const animeActual = animes[indiceActual];
 
